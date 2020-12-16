@@ -1,4 +1,4 @@
-name: Laravel
+name: namq
 
 on:
   push:
@@ -19,6 +19,9 @@ jobs:
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Install NPM dependencies
       run: npm install
+    - name: tar files
+      run: |
+        tar --exclude=backend_release.tgz --exclude="*.git*"  -zcf backend_release.tgz *
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
