@@ -16,7 +16,7 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction --no-dev
     - name: Install NPM dependencies
       run: npm install
     - name: tar files
