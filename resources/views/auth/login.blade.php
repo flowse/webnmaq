@@ -49,7 +49,7 @@
                             {{ __('تسجيل الدخول') }}
                         </x-jet-button>
                         </div>
-                    <div class="d-flex justify-content-center align-items-baseline mt-2">
+                    <!-- <div class="d-flex justify-content-center align-items-baseline mt-2">
                         @if (Route::has('password.request'))
                             <a class="text-muted mr-3" href="{{ route('password.request') }}">
                                 {{ __('هل نسيت كلمة المرور؟') }}
@@ -57,7 +57,7 @@
                         @endif
 
                       
-                    </div>
+                    </div> -->
                     
                 </div>
             </form>
