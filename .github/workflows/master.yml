@@ -2,9 +2,9 @@ name: Namq
 
 on:
   push:
-    branches: [master]
+    branches: [stage]
   pull_request:
-    branches: [master]
+    branches: [stage]
 
 jobs:
   laravel-tests:
@@ -23,7 +23,7 @@ jobs:
         uses: horochx/deploy-via-scp@master
         with:
           local: backend_release.tgz
-          remote: ${{ secrets.REMOTE }}
+          remote: ${{ secrets.REMOTE }}/actions
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           user: ${{ secrets.USER }}
@@ -36,4 +36,4 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            tar --warning=no-timestamp --overwrite -xf ${{ secrets.REMOTE }}/backend_release.tgz --directory ${{ secrets.REMOTE }}
+            tar --warning=no-timestamp --overwrite -xf ${{ secrets.REMOTE }}/actions/backend_release.tgz --directory ${{ secrets.REMOTE }}
