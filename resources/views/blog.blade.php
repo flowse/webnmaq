@@ -56,6 +56,9 @@
 						<li class="nav-item"><a class="nav-link menu-link" href="/index#partner">شركاء نمق</a></li>
 						<li class="nav-item"><a class="nav-link menu-link" href="/blog">المدونة</a></li>
 						@auth
+						@if (\Auth::user()->role == 'admin')
+						<li class="nav-item"><a class="nav-link menu-link" href="/dashboard">صفحة التحكم</a></li>
+						@else
 						<li class="nav-item">
 						<a class="nav-link" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 							تسجيل الخروج
@@ -64,6 +67,7 @@
 							@csrf
 						</form>
 						</li>
+						@endif
 						@else
 						<!-- <li class="nav-item">
 							<a href="{{route('login')}}" class="nav-link">تسجيل الدخول</a>

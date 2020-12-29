@@ -44,7 +44,9 @@
 						<li class="nav-item"><a class="nav-link menu-link" href="/index#packages"> باقاتنا</a></li>
 						<li class="nav-item"><a class="nav-link menu-link" href="/index#partner">شركاء نمق</a></li>
 						<li class="nav-item"><a class="nav-link menu-link" href="/blog">المدونة</a></li>
+						
 						@auth
+						
 						<a class="nav-item" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 							تسجيل الخروج
 						</a>
