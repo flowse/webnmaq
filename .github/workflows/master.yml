@@ -22,7 +22,7 @@ jobs:
       - name: deploy-via-scp
         uses: horochx/deploy-via-scp@master
         with:
-          local: build/backend_release.tgz
+          local: backend_release.tgz
           remote: ${{ secrets.REMOTE }}/actions
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
