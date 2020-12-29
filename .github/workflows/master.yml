@@ -1,0 +1,39 @@
+name: Namq
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-scripts --no-progress --no-suggest --no-interaction --no-dev
+      - name: tar files
+        run: |
+          tar --exclude=backend_release.tgz --exclude="*.git*"  -zcf backend_release.tgz *
+      - name: deploy-via-scp
+        uses: horochx/deploy-via-scp@master
+        with:
+          local: backend_release.tgz
+          remote: ${{ secrets.REMOTE }}
+          host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          user: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            tar --warning=no-timestamp --overwrite -xf ${{ secrets.REMOTE }}/backend_release.tgz --directory ${{ secrets.REMOTE }}
